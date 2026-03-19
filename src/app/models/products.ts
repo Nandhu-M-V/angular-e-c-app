@@ -1,7 +1,14 @@
 export interface Product {
-    id: number;
+    id: string;
     title: string;
     price: number;
     description: string;
-    image: string;
+    category: string;
+    brand: string;
+    rating: number;
+    stock: number;
+    images: string[];
+    specs?: Record<string, string | boolean>;
 }
+
+export type CreateProduct = Omit<Product, 'id'>;

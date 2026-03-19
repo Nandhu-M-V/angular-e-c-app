@@ -1,0 +1,137 @@
+{
+    "products": [
+        {
+            "id": "1",
+            "title": "Laptop",
+            "price": 50000,
+            "category": "electronics",
+            "brand": "Dell",
+            "rating": 4.5,
+            "stock": 10,
+            "images": ["assets/images/laptop-1.jpg", "assets/images/laptop-2.jpg"],
+            "description": "High performance laptop with 16GB RAM and 512GB SSD",
+            "specs": {
+                "ram": "16GB",
+                "storage": "512GB SSD",
+                "processor": "Intel i7"
+            }
+        },
+        {
+            "id": "2",
+            "title": "Smartphone",
+            "price": 25000,
+            "category": "electronics",
+            "brand": "Samsung",
+            "rating": 4.3,
+            "stock": 25,
+            "images": ["assets/images/smartphone.jpg"],
+            "description": "6.5 inch display, 128GB storage, 5G supported",
+            "specs": {
+                "ram": "8GB",
+                "storage": "128GB",
+                "battery": "5000mAh"
+            }
+        },
+        {
+            "id": "3",
+            "title": "Mechanical Keyboard",
+            "price": 4500,
+            "category": "accessories",
+            "brand": "Logitech",
+            "rating": 4.7,
+            "stock": 15,
+            "images": ["assets/images/keyboard.jpg"],
+            "description": "RGB mechanical keyboard with blue switches",
+            "specs": {
+                "switch": "Blue",
+                "rgb": true
+            }
+        }
+    ],
+    "users": [
+        {
+            "id": "1",
+            "name": "Nandhu",
+            "email": "nandhu@test.com"
+        },
+        {
+            "id": "2",
+            "name": "John",
+            "email": "john@test.com"
+        }
+    ],
+    "wishlist": [
+        {
+            "id": "1",
+            "userId": 1,
+            "productId": 1
+        },
+        {
+            "id": "1",
+            "userId": 1,
+            "productId": 2
+        }
+    ],
+    "cart": [
+        {
+            "id": "0c8f",
+            "userId": 1,
+            "productId": "3",
+            "quantity": 2
+        },
+        {
+            "id": "8fa7",
+            "userId": 1,
+            "productId": "2",
+            "quantity": 1
+        }
+    ],
+    "reviews": [
+        {
+            "id": "1",
+            "productId": "1 ",
+            "userId": "1",
+            "rating": 5,
+            "comment": "Amazing product!",
+            "date": "2026-03-18"
+        },
+        {
+            "id": "2",
+            "productId": "1",
+            "userId": "2",
+            "rating": 4,
+            "comment": "Good but expensive",
+            "date": "2026-03-17"
+        }
+    ],
+    "orders": [
+        {
+            "id": "1",
+            "userId": 1,
+            "items": [
+                {
+                    "productId": 1,
+                    "quantity": 1
+                },
+                {
+                    "productId": 2,
+                    "quantity": 2
+                }
+            ],
+            "total": 100000,
+            "status": "delivered",
+            "date": "2026-03-15"
+        }
+    ],
+    "categories": [
+        {
+            "id": "1",
+            "name": "electronics"
+        },
+        {
+            "id": "2",
+            "name": "accessories"
+        }
+    ],
+    "$schema": "./node_modules/json-server/schema.json"
+}

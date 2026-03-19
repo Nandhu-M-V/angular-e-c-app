@@ -1,25 +1,49 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, computed, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Product } from '../models/products';
+import { toSignal, toObservable } from '@angular/core/rxjs-interop';
+import { switchMap } from 'rxjs';
+import { CreateProduct, Product } from '../models/products';
+import { base_url } from '../../env.constants';
+import { Review } from '../models/reviews';
 
 @Injectable({ providedIn: 'root' })
 export class ProductService {
-    private api = 'https://fakestoreapi.com/products';
+    private http = inject(HttpClient);
+    private api = `${base_url}products`;
 
-    products = signal<Product[]>([]);
-    loading = signal(false);
+    private refreshTrigger = signal(0);
 
-    constructor(private http: HttpClient) {}
+    products = toSignal(
+        toObservable(this.refreshTrigger).pipe(switchMap(() => this.http.get<Product[]>(this.api))),
+        { initialValue: [] },
+    );
 
-    fetchProducts() {
-        this.loading.set(true);
+    // Filters
+    search = signal('');
+    category = signal('');
 
-        this.http.get<Product[]>(this.api).subscribe({
-            next: (data) => {
-                this.products.set(data);
-                this.loading.set(false);
-            },
-            error: () => this.loading.set(false),
-        });
+    filtered = computed(() => {
+        return this.products().filter(
+            (p) =>
+                p.title.toLowerCase().includes(this.search().toLowerCase()) &&
+                (this.category() ? p.category === this.category() : true),
+        );
+    });
+
+    private reviewsApi = `${base_url}reviews`;
+
+    reviews = toSignal(
+        toObservable(this.refreshTrigger).pipe(
+            switchMap(() => this.http.get<Review[]>(this.reviewsApi)),
+        ),
+        { initialValue: [] },
+    );
+
+    addProduct(product: CreateProduct) {
+        return this.http.post(this.api, product);
+    }
+
+    refresh() {
+        this.refreshTrigger.update((v) => v + 1);
     }
 }

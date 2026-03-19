@@ -15,7 +15,7 @@ export class ProductService {
 
     products = toSignal(
         toObservable(this.refreshTrigger).pipe(switchMap(() => this.http.get<Product[]>(this.api))),
-        { initialValue: [] },
+        { initialValue: [] as Product[] },
     );
 
     // Filters

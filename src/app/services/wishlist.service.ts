@@ -41,7 +41,6 @@ export class WishlistService {
         }
     }
 
-    // ⚡ fast lookup
     map = computed(() => {
         const m = new Set<string>();
         this.wishlist().forEach((w) => {

@@ -588,6 +588,18 @@
       "id": "9d46",
       "userId": 1,
       "productId": "3",
+      "quantity": 1
+    },
+    {
+      "id": "485f",
+      "userId": 1,
+      "productId": "4",
+      "quantity": 1
+    },
+    {
+      "id": "5e51",
+      "userId": 1,
+      "productId": "10",
       "quantity": 3
     }
   ],

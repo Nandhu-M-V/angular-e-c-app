@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
     standalone: true,
     imports: [CommonModule],
     templateUrl: './cart.component.html',
+    styleUrl: './cart.component.css',
 })
 export class CartComponent {
     cartService = inject(CartService);

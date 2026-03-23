@@ -19,6 +19,10 @@ export class WishlistService {
         { initialValue: [] as WishlistItem[] },
     );
 
+    count() {
+        return this.wishlist().length;
+    }
+
     refresh() {
         this.refreshTrigger.update((v) => v + 1);
     }

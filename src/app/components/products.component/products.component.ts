@@ -3,19 +3,27 @@ import { ProductService } from '../../services/products.service';
 import { CartService } from '../../services/cart.service';
 import { WishlistService } from '../../services/wishlist.service';
 import { AuthService } from '../../services/auth.service';
+// import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-products',
     standalone: true,
     templateUrl: './products.component.html',
+    imports: [],
 })
 export class ProductsComponent {
     productService = inject(ProductService);
     cartService = inject(CartService);
     wishlistService = inject(WishlistService);
     authService = inject(AuthService);
+    router = inject(Router);
 
-    // ➕ Add Product (fixed structure)
+    // routing
+    goToProduct(id: string) {
+        this.router.navigate(['/product', id]);
+    }
+
     add(title: string, price: string) {
         const product = {
             title,

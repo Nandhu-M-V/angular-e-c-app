@@ -1,12 +1,35 @@
-import { Component, signal } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { CartService } from './services/cart.service';
+import { WishlistService } from './services/wishlist.service';
+import { RouterLinkActive } from '@angular/router';
 
 @Component({
     selector: 'app-root',
-    imports: [RouterOutlet, RouterLink],
+    imports: [RouterOutlet, RouterLink, RouterLinkActive],
     templateUrl: './app.html',
     styleUrl: './app.css',
 })
 export class App {
+    cartService = inject(CartService);
+    wishlistService = inject(WishlistService);
+
+    menuOpen = false;
+
+    toggleMenu(event: Event) {
+        event.stopPropagation();
+        this.menuOpen = !this.menuOpen;
+    }
+
+    ngOnInit() {
+        document.addEventListener('click', () => {
+            this.menuOpen = false;
+        });
+    }
+
+    @HostListener('document:click')
+    closeMenu() {
+        this.menuOpen = false;
+    }
     //   protected readonly title = signal('angular-e-c-app');
 }

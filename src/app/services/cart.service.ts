@@ -16,6 +16,10 @@ export class CartService {
         });
     }
 
+    count() {
+        return this.cart().length;
+    }
+
     add(userId: number, productId: string) {
         const existing = this.cart().find((c) => c.productId === productId && c.userId === userId);
 
@@ -34,6 +38,27 @@ export class CartService {
                 })
                 .subscribe(() => this.load());
         }
+    }
+
+    updateQuantity(cartItemId: string, newQuantity: number) {
+        // Find the cart item from current signal
+        const cartItem = this.cart().find((item) => item.id === cartItemId);
+
+        if (!cartItem) return;
+
+        // Validate quantity
+        if (newQuantity < 1) {
+            // If quantity is less than 1, remove the item
+            this.remove(cartItemId);
+            return;
+        }
+
+        // Update quantity via API
+        this.http
+            .patch(`${this.api}/${cartItemId}`, {
+                quantity: newQuantity,
+            })
+            .subscribe(() => this.load());
     }
 
     remove(id: string) {

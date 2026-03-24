@@ -3,10 +3,10 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { CartService } from './services/cart.service';
 import { WishlistService } from './services/wishlist.service';
 import { RouterLinkActive } from '@angular/router';
-
+import { ToastComponent } from './UI/components/toast.component/toast.component';
 @Component({
     selector: 'app-root',
-    imports: [RouterOutlet, RouterLink, RouterLinkActive],
+    imports: [RouterOutlet, RouterLink, RouterLinkActive, ToastComponent],
     templateUrl: './app.html',
     styleUrl: './app.css',
 })

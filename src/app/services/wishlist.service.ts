@@ -4,10 +4,13 @@ import { toSignal, toObservable } from '@angular/core/rxjs-interop';
 import { switchMap } from 'rxjs';
 import { WishlistItem } from '../models/wishlistItem';
 import { base_url } from '../../env.constants';
+import { ToastService } from '../UI/services/toast.service';
 
 @Injectable({ providedIn: 'root' })
 export class WishlistService {
     private http = inject(HttpClient);
+    private toast = inject(ToastService);
+
     private api = `${base_url}wishlist`;
 
     private refreshTrigger = signal(0);
@@ -33,11 +36,21 @@ export class WishlistService {
         );
 
         if (existing) {
-            this.http.delete(`${this.api}/${existing.id}`).subscribe(() => this.refresh());
+            this.http.delete(`${this.api}/${existing.id}`).subscribe({
+                next: () => {
+                    this.refresh();
+                    this.toast.show('Removed from wishlist', 'info');
+                },
+                error: () => this.toast.show('Failed to remove from wishlist', 'error'),
+            });
         } else {
-            this.http
-                .post<WishlistItem>(this.api, { userId, productId })
-                .subscribe(() => this.refresh());
+            this.http.post<WishlistItem>(this.api, { userId, productId }).subscribe({
+                next: () => {
+                    this.refresh();
+                    this.toast.show('Added to wishlist ❤️', 'success');
+                },
+                error: () => this.toast.show('Failed to add to wishlist', 'error'),
+            });
         }
     }
 

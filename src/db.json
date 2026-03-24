@@ -10,7 +10,7 @@
       "stock": 8,
       "images": [
         "assets/images/laptop-1.jpg",
-        "assets/images/laptop-2.jpg"
+        "assets/images/laptop.jpg"
       ],
       "description": "Premium ultrabook with InfinityEdge display, 32GB RAM, and 1TB SSD. Perfect for professionals and creators.",
       "specs": {
@@ -582,25 +582,19 @@
       "join_date": "2025-08-14"
     }
   ],
-  "wishlist": [],
+  "wishlist": [
+    {
+      "id": "5c90",
+      "userId": 1,
+      "productId": "2"
+    }
+  ],
   "cart": [
     {
-      "id": "9d46",
+      "id": "43a0",
       "userId": 1,
-      "productId": "3",
-      "quantity": 1
-    },
-    {
-      "id": "485f",
-      "userId": 1,
-      "productId": "4",
-      "quantity": 1
-    },
-    {
-      "id": "5e51",
-      "userId": 1,
-      "productId": "10",
-      "quantity": 3
+      "productId": "2",
+      "quantity": 8
     }
   ],
   "reviews": [
@@ -763,6 +757,30 @@
       "rating": 5,
       "comment": "Best gaming headset I've ever used. Comfortable for long sessions.",
       "date": "2026-01-20"
+    },
+    {
+      "id": "738d1df2-feb2-4763-84de-ec6237e340a0",
+      "comment": "reviewwwww",
+      "rating": 4,
+      "productId": "2",
+      "userId": "1",
+      "date": "2026-03-24T05:12:28.948Z"
+    },
+    {
+      "id": "cfa8",
+      "comment": "4 stars",
+      "rating": 4,
+      "productId": "1",
+      "userId": 1,
+      "date": "2026-03-24T05:45:12.480Z"
+    },
+    {
+      "id": "78dc",
+      "comment": "trtyuioop[p",
+      "rating": 4,
+      "productId": "1",
+      "userId": 1,
+      "date": "2026-03-24T12:37:50.099Z"
     }
   ],
   "orders": [

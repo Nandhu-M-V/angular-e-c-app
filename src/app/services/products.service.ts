@@ -1,7 +1,7 @@
 import { Injectable, signal, computed, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { toSignal, toObservable } from '@angular/core/rxjs-interop';
-import { switchMap } from 'rxjs';
+import { switchMap, tap } from 'rxjs';
 import { CreateProduct, Product } from '../models/products';
 import { base_url } from '../../env.constants';
 import { Review } from '../models/reviews';
@@ -41,6 +41,10 @@ export class ProductService {
 
     addProduct(product: CreateProduct) {
         return this.http.post(this.api, product);
+    }
+
+    addReview(review: Review) {
+        return this.http.post(this.reviewsApi, review).pipe(tap(() => this.refresh()));
     }
 
     refresh() {

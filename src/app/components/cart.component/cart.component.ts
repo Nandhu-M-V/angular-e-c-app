@@ -42,28 +42,22 @@ export class CartComponent {
         }, 0);
     });
 
-    // Update quantity method
     updateQuantity(cartItemId: string, newQuantity: number) {
-        // Find the cart item
         const cartItem = this.cartItems().find((item) => item.id === cartItemId);
 
         if (!cartItem) return;
 
-        // Validate quantity
         if (newQuantity < 1) {
-            // If quantity is less than 1, remove the item
             this.cartService.remove(cartItemId);
             return;
         }
 
-        // Check stock availability
         const product = cartItem.product;
         if (product && newQuantity > product.stock) {
             alert(`Only ${product.stock} items available in stock`);
             return;
         }
 
-        // Update quantity in cart service
         this.cartService.updateQuantity(cartItemId, newQuantity);
     }
 }
